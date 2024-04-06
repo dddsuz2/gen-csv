@@ -2,6 +2,8 @@ import csv
 import os
 import sys
 import traceback
+import gzip
+import shutil
 
 import numpy as np
 from faker import Faker
@@ -21,17 +23,21 @@ def generate_csv(data_size: int) -> None:
 
     try:
         while current_bytes < data_size:
-            with open("test.csv", "a") as f:
+            with open("../test_data/test.csv", "a") as f:
                 writer = csv.writer(f)
                 test_data = create_rows()
-                print(test_data.toList())
                 writer.writerow(test_data.toList())
+                f.close()
 
-            current_bytes = os.path.getsize("test.csv")
+            current_bytes = os.path.getsize("../test_data/test.csv")
+
+        with open('../test_data/test.csv', 'rb') as b_in:
+            with gzip.open('../test_data/test.csv.gz', 'wb') as b_out:
+                shutil.copyfileobj(b_in, b_out)
 
     except Exception as e:
         traceback.print_exc()
-        os.remove("test.csv")
+        os.remove("../test_data/test.csv")
 
 
 def create_rows() -> Rows:

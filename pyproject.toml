@@ -10,10 +10,10 @@ python = "^3.11"
 numpy = "^1.26.4"
 faker = "^24.3.0"
 flake8 = "^6.0.0"
-black = "^24.3.0"
 isort = "^5.13.2"
 mypy = "^1.9.0"
 pyproject-flake8 = "^6.1.0"
+black = "^24.3.0"
 
 [tool.black]
 line-length = 119
@@ -23,7 +23,7 @@ profile = "black"
 
 [tool.flake8]
 max-line-length = 119
-exclude = [".venv", ".git", "__pycache__", ".venv/"]
+exclude = [".git", "__pycache__", ".venv/"]
 
 [build-system]
 requires = ["poetry-core"]
